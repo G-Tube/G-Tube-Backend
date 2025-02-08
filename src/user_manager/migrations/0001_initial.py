@@ -7,13 +7,6 @@ import django.utils.timezone
 import uuid
 from django.conf import settings
 from django.db import migrations, models
-from src.user_manager.models import User
-
-
-def create_default_superuser(apps, schema_editor):
-    User.objects.create_superuser(
-        username="admin", password="admin", email="admin@admin.com"
-    )
 
 
 class Migration(migrations.Migration):
@@ -178,5 +171,4 @@ class Migration(migrations.Migration):
                 to="preferences.preference",
             ),
         ),
-        migrations.RunPython(create_default_superuser),
     ]
