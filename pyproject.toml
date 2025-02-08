@@ -17,6 +17,7 @@ django-redis = "^5.4.0"
 python-dotenv = "^1.0.1"
 gunicorn = "^23.0.0"
 pytest = "^8.3.3"
+djangorestframework-simplejwt = {extras = ["crypto"], version = "^5.4.0"}
 
 
 [tool.poetry.group.dev.dependencies]

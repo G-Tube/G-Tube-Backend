@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "celery",
     "django_celery_results",
+    "rest_framework_simplejwt",
 ]
 LOCAL_APPS = [
     "src.common",
@@ -136,10 +137,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
     ],
 }
 
