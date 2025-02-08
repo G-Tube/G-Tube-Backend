@@ -9,7 +9,7 @@ def create_default_preferences(apps, schema_editor):
 
     data = [
         {
-            "key": "LANG",
+            "key": "default_language",
             "dtype": DTYPE.STRING.value,
             "description": "Default language for the application",
         },

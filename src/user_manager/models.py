@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser as _User, UserManager
 import uuid
 from src.preferences.schemas import DTYPE
+from django.utils.translation import gettext_lazy as _
 
 
 class UserPreference(models.Model):
@@ -56,5 +57,9 @@ class User(_User):
         through="UserPreference",
         related_name="users",
     )
+    email = models.EmailField(_("email address"), unique=True)
 
     objects = UserManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
