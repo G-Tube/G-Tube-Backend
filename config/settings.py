@@ -54,6 +54,7 @@ LOCAL_APPS = [
     "src.preferences",
     "src.user_manager",
     "src.job_manager",
+    "src.video_manager",
 ]
 INSTALLED_APPS = [
     *DJANGO_INTERNAL_APPS,
