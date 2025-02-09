@@ -1,8 +1,11 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser as _User, UserManager
 import uuid
-from src.preferences.schemas import DTYPE
+
+from django.contrib.auth.models import AbstractUser as _User
+from django.contrib.auth.models import UserManager
+from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from src.preferences.schemas import DTYPE
 
 
 class UserPreference(models.Model):
@@ -58,6 +61,14 @@ class User(_User):
         related_name="users",
     )
     email = models.EmailField(_("email address"), unique=True)
+    dp = models.ImageField(
+        upload_to="profile_pics",
+        default="../static/default-dp.jpg",
+    )
+    cover = models.ImageField(
+        upload_to="cover_pics",
+        default="../static/default-cover.jpg",
+    )
 
     objects = UserManager()
 
