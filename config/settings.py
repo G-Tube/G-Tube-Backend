@@ -145,6 +145,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+    "DEFAULT_RENDERER_CLASSES": ("src.common.renderers.CommonResponseRenderer",),
+    "EXCEPTION_HANDLER": "src.common.renderers.custom_exception_handler",
 }
 
 
