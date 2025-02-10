@@ -1,5 +1,4 @@
 import os
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -12,9 +11,9 @@ DATABASES = (
     {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get("POSTGRES_DB", "gshare"),
-            "USER": os.environ.get("POSTGRES_USER", "gshareadmin"),
-            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "gsharedefault"),
+            "NAME": os.environ.get("POSTGRES_DB", "gtube"),
+            "USER": os.environ.get("POSTGRES_USER", "gtubeadmin"),
+            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "gtubedefault"),
             "HOST": os.environ.get("POSTGRES_DB_HOST", "localhost"),
             "PORT": os.environ.get("POSTGRES_PORT", "5432"),
         }

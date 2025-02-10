@@ -3,15 +3,15 @@
 1. Clone the repository
 2. Install docker and docker compose
 3. Add the Environment Variables in a .env file, located at the root of the project.
-    Meaning, if your project is at `/app/gshare`, your file would be `app/gshare/.env`
+    Meaning, if your project is at `/app/gtube`, your file would be `app/gtube/.env`
 
     Defaults are provided here, but they can be tuned as per requirements.
 
     ```
     #BACKEND APPLICATION SETTINGS
-    GSHARE_BE_SECRET_KEY=django_test-insecure
-    GSHARE_BE_DEBUG=TRUE
-    GSHARE_BE_ALLOWED_HOSTS=localhost,*
+    GTUBE_BE_SECRET_KEY=django_test-insecure
+    GTUBE_BE_DEBUG=TRUE
+    GTUBE_BE_ALLOWED_HOSTS=localhost,*
 
     #CELERY WORKER SETTINGS
     CELERY_BROKER_URL=redis://redis:6379
@@ -19,11 +19,14 @@
     WORKER_LOG_LEVEL=DEBUG
 
     #DATABASE SETTINGS
-    POSTGRES_DB=gshare
-    POSTGRES_USER=gshare
-    POSTGRES_PASSWORD=gshare
+    POSTGRES_DB=gtube
+    POSTGRES_USER=gtube
+    POSTGRES_PASSWORD=gtube
     POSTGRES_PORT=5432
     POSTGRES_DB_HOST=postgres
+
+    JWT_PRIVATE_KEY=/app/gtube/keys/private.pem
+    JWT_ALGORITHM=RS256
     ```
 4. All done. You have set up the required environment to run the project.
 
@@ -45,4 +48,3 @@ The project can be accessed at `http://localhost/` on your browser.
 To run the tests, you can run the following command.
 
     docker compose run backend python manage.py test
-
