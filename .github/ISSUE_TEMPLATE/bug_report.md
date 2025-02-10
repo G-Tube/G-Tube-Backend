@@ -37,4 +37,4 @@ If applicable, add screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
 
-[ ] I Confirm I have attached a project to this issue with status as todo
+- [ ] I Confirm I have attached a project to this issue with status as todo

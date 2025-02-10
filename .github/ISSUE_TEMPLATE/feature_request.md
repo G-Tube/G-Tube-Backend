@@ -19,4 +19,4 @@ A clear and concise description of any alternative solutions or features you've 
 **Additional context**
 Add any other context or screenshots about the feature request here.
 
-[ ] I Confirm I have attached a project to this issue with status as todo, without any iteration data
+- [ ] I Confirm I have attached a project to this issue with status as todo, without any iteration data
