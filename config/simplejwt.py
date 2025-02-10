@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 
 SIMPLE_JWT = {
+    "TOKEN_OBTAIN_SERIALIZER": "src.auth_manager.serializers.CustomObtainPairSerializer",
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "ISSUER": "gTube",
 }

@@ -13,21 +13,24 @@ class UserPreference(models.Model):
     preference = models.ForeignKey("preferences.Preference", on_delete=models.CASCADE)
     raw_value: str | models.TextField = models.TextField()
 
+    class Meta:
+        unique_together = ("user", "preference")
+
     @property
     def value(self):
         import json
 
-        if self.preference.type == DTYPE.STRING.value:
+        if self.preference.dtype == DTYPE.STRING.value:
             return self.raw_value
-        elif self.preference.type == DTYPE.BOOL.value:
+        elif self.preference.dtype == DTYPE.BOOL.value:
             return self.raw_value.lower() == "true"
-        elif self.preference.type == DTYPE.INT.value:
+        elif self.preference.dtype == DTYPE.INT.value:
             return int(self.raw_value)
-        elif self.preference.type == DTYPE.FLOAT.value:
+        elif self.preference.dtype == DTYPE.FLOAT.value:
             return float(self.raw_value)
-        elif self.preference.type == DTYPE.STRING.value:
+        elif self.preference.dtype == DTYPE.STRING.value:
             return self.raw_value
-        elif self.preference.type == DTYPE.JSON.value:
+        elif self.preference.dtype == DTYPE.JSON.value:
             return json.loads(self.raw_value)
         else:
             raise ValueError(f"Unknown type {self.preference.type}")
@@ -36,19 +39,19 @@ class UserPreference(models.Model):
     def value_setter(self, value: str | int | float | bool | dict | list):
         import json
 
-        if self.preference.type == DTYPE.STRING.value:
+        if self.preference.dtype == DTYPE.STRING.value:
             assert isinstance(value, str)
             self.raw_value = value
-        elif self.preference.type == DTYPE.BOOL.value:
+        elif self.preference.dtype == DTYPE.BOOL.value:
             assert isinstance(value, bool)
             self.raw_value = value
-        elif self.preference.type == DTYPE.INT.value:
+        elif self.preference.dtype == DTYPE.INT.value:
             assert isinstance(value, int)
             self.raw_value = str(int(value))
-        elif self.preference.type == DTYPE.FLOAT.value:
+        elif self.preference.dtype == DTYPE.FLOAT.value:
             assert isinstance(value, float)
             self.raw_value = str(float(value))
-        elif self.preference.type == DTYPE.JSON.value:
+        elif self.preference.dtype == DTYPE.JSON.value:
             assert isinstance(value, dict) or isinstance(value, list)
             self.raw_value = json.dumps(value)
 
