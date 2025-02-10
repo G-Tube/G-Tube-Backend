@@ -21,6 +21,7 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
+from src.auth_manager import urls as auth_urls
 from src.preferences import urls as pref_urls
 from src.user_manager import urls as user_urls
 
@@ -29,14 +30,14 @@ pref_urls.inject_urls(router)
 user_urls.inject_urls(router)
 
 absolute_urlpatterns = []
-absolute_urlpatterns += user_urls.absolute_urlpatterns
+absolute_urlpatterns += auth_urls.absolute_urlpatterns
 
 urlpatterns = (
     [
         path("", include(absolute_urlpatterns)),
         path("admin", admin.site.urls),
         path("api/", include(router.urls)),
-        path("api/auth/", include(user_urls.urlpatterns)),
+        path("api/auth/", include(auth_urls.urlpatterns)),
     ]
     + static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     + static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
