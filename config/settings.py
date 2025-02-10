@@ -15,6 +15,8 @@ from pathlib import Path
 
 from django.conf.global_settings import AUTH_USER_MODEL, STATICFILES_DIRS
 
+from config.debug_toolbar import setup_debug_toolbar
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +33,8 @@ DEBUG = os.environ.get("GTUBE_BE_DEBUG", "true").lower() == "true"
 ALLOWED_HOSTS = (
     ["*"] if DEBUG else os.environ.get("GTUBE_BE_ALLOWED_HOSTS", "").split(",")
 )
+
+INTERNAL_IPS = []
 
 # Application definition
 
@@ -197,3 +201,5 @@ AUTH_USER_MODEL = "user_manager.User"
 from .celery_conf import *
 from .database import *
 from .simplejwt import *
+
+setup_debug_toolbar(DEBUG, INSTALLED_APPS, MIDDLEWARE, INTERNAL_IPS)
