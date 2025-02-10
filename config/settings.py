@@ -23,13 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("GSHARE_BE_SECRET_KEY", "test")
+SECRET_KEY = os.environ.get("GTUBE_BE_SECRET_KEY", "test")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("GSHARE_BE_DEBUG", "true").lower() == "true"
+DEBUG = os.environ.get("GTUBE_BE_DEBUG", "true").lower() == "true"
 
 ALLOWED_HOSTS = (
-    ["*"] if DEBUG else os.environ.get("GSHARE_BE_ALLOWED_HOSTS", "").split(",")
+    ["*"] if DEBUG else os.environ.get("GTUBE_BE_ALLOWED_HOSTS", "").split(",")
 )
 
 # Application definition

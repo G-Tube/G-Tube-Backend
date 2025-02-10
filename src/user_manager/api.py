@@ -1,10 +1,11 @@
-import re
-
-from django.db.models import Q, query
-from rest_framework import mixins, serializers, viewsets
+from django.db.models import Q
+from django.http import response as djresponse
+from jwcrypto import jwk
+from rest_framework import exceptions, mixins, permissions, serializers, views, viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
+from rest_framework_simplejwt.settings import api_settings
 
 from src.user_manager import models as user_manager_models
 
@@ -56,3 +57,20 @@ class UserViewSet(
         user = get_object_or_404(user_manager_models.User, username=username)
         preferences = user.preferences.all()
         return Response(self.UserPreferenceOutSerializer(preferences, many=True).data)
+
+
+class JwkView(views.APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+
+        if not api_settings.JWK_URL:
+            raise exceptions.NotFound()
+
+        signing_key = api_settings.SIGNING_KEY
+
+        if not signing_key:
+            return
+
+        key: jwk.JWK = jwk.JWK.from_pem(signing_key.encode("utf-8"))
+        return djresponse.JsonResponse({"keys": [key.export_public(as_dict=True)]})

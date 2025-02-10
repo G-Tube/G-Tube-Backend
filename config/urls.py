@@ -28,8 +28,12 @@ router = routers.DefaultRouter()
 pref_urls.inject_urls(router)
 user_urls.inject_urls(router)
 
+absolute_urlpatterns = []
+absolute_urlpatterns += user_urls.absolute_urlpatterns
+
 urlpatterns = (
     [
+        path("", include(absolute_urlpatterns)),
         path("admin", admin.site.urls),
         path("api/", include(router.urls)),
         path("api/auth/", include(user_urls.urlpatterns)),
